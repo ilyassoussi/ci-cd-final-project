@@ -19,6 +19,8 @@ def health():
 ############################################################
 # Index page
 ############################################################
+
+
 @app.route("/")
 def index():
     """Returns information about the service"""
@@ -34,12 +36,16 @@ def index():
 ############################################################
 # List counters
 ############################################################
+
+
 @app.route("/counters", methods=["GET"])
 def list_counters():
     """Lists all counters"""
     app.logger.info("Request to list all counters...")
 
-    counters = [dict(name=count[0], counter=count[1]) for count in COUNTER.items()]
+    counters = [
+        dict(name=count[0], counter=count[1]) for count in COUNTER.items()
+    ]
 
     return jsonify(counters)
 
@@ -47,6 +53,8 @@ def list_counters():
 ############################################################
 # Create counters
 ############################################################
+
+
 @app.route("/counters/<name>", methods=["POST"])
 def create_counters(name):
     """Creates a new counter"""
@@ -71,6 +79,8 @@ def create_counters(name):
 ############################################################
 # Read counters
 ############################################################
+
+
 @app.route("/counters/<name>", methods=["GET"])
 def read_counters(name):
     """Reads a single counter"""
@@ -89,6 +99,8 @@ def read_counters(name):
 ############################################################
 # Update counters
 ############################################################
+
+
 @app.route("/counters/<name>", methods=["PUT"])
 def update_counters(name):
     """Updates a counter"""
@@ -109,6 +121,8 @@ def update_counters(name):
 ############################################################
 # Delete counters
 ############################################################
+
+
 @app.route("/counters/<name>", methods=["DELETE"])
 def delete_counters(name):
     """Deletes a counter"""
@@ -123,6 +137,8 @@ def delete_counters(name):
 ############################################################
 # Utility for testing
 ############################################################
+
+
 def reset_counters():
     """Removes all counters while testing"""
     global COUNTER  # pylint: disable=global-statement
